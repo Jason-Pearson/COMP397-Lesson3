@@ -67,11 +67,18 @@ function main(): void {
     stage.addChild(helloLabel); // add label to the stage
 
     startButton = new createjs.Bitmap(".../../Assets/images/State_Machine_Buttons/startButton.png"); //looking for image-url (path to image) to hold in this variable
+    // this validates the size of the start button image (instantiated within this bitmap variable) within the canvas -
+    startButton.regX = 75; // startButton.getBounds().height * 0.5 --> register X position of start button image (via resolution width: 150) to the middle of the x-value of the screen (move to half = 75)
+    startButton.regY = 25; // register for Y
+    // - allowing it to move start button by x and y positioning within canvas 
+    startButton.x = 320;
+    startButton.y = 340;
+
     startButton.on("click", clickStartButton, this); // to make image interactive - have startbutton variable listen to an event handler (on - "click") - and have event handler reference our function (clickStartButton) to be called
     //calling both these functions give the start button a roll-over effect - changin alpha of the image on mouseover and then back to solid upon mouseout
     startButton.on("mouseover", overStartButton, this); // listen to event handler (on - "mouseover") to call function
     startButton.on("mouseout", outStartButton, this); // listen to event handler (on - "mouseout") to call function
-
+    
     stage.addChild(startButton); // add Start Button to the Stage ( a variable which holds the Canvas as a reference)
 }
  

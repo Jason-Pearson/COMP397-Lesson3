@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>COMP397 - Lesson 2</title>
     <!-- CSS Section -->
-    <link href="Content/reset.css" rel="stylesheet" />
+    <link href="Content/reset.css" rel="stylesheet" /> <!--the whole html file is formated by reset.css(?)-->
     <link href="Content/game.css" rel="stylesheet" />
 </head>
-<body onload="init();">
-    <div class="game">
-        <canvas id="canvas" width="640" height="480"></canvas>
+<body onload="init();"> <!--on intial load of the body - call init() function from game.ts - establishing everything in the canvas from the first frame ~ -->
+    <div class="game"> <!-- ~ in a div border relative to the size of the canvas made within ~ in which the div is also formated by game.css-->
+        <canvas id="canvas" width="640" height="480"></canvas> <!-- the canvas also has an id to have the stage variable in game.ts be a reference of the canvas via getElementById and assigning it -->
     </div>
 
     <!-- JavaScript Libraries-->
