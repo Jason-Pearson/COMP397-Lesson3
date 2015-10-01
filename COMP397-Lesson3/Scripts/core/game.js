@@ -6,13 +6,14 @@
 /// <reference path="../typings/soundjs/soundjs.d.ts" />
 /// <reference path="../typings/preloadjs/preloadjs.d.ts" />
 /// <reference path="../objects/label.ts" />
+/// <reference path="../objects/button.ts" />
 // GLOBAL GAME FRAMEWORK VARIABLES
 var canvas;
 var stage;
 var stats; //make a function to set up game stats - via this variable that is of class Stats (imported from Stats.d.js in Scripts/typings folder) 
 // Game Variables
 var helloLabel;
-var startButton; // this variable will hold an image via the Bitmap class from the createJS
+var startButton; // this button variable is of type Button class - where it will hold an image as a bitmap, and have position and mouse-event functionality
 //Our void Start () method per se - upon intial frame, execute code
 function init() {
     canvas = document.getElementById("canvas"); // reference to canvas element
@@ -42,29 +43,14 @@ function setupStats() {
 function clickStartButton(event) {
     helloLabel.text = "Clicked"; // change text for helloLabel - won't be the same position in the canvas as before in Main function - "Game Start"
 }
-// Event Handler for mouse over 
-function overStartButton(event) {
-    startButton.alpha = 0.7; // when mouse over the start button - go to .7 alpha - makes the image lighter
-}
-// Event Handler for mouse out
-function outStartButton(event) {
-    startButton.alpha = 1.0; // when mouse out of the start button - go back to 1.0 alpha - orignal, solid color basically
-}
 // This is where all the fun happens
 function main() {
+    // hello label
     helloLabel = new objects.Label("Game Start", "60px Consolas", "#000000", 320, 240);
     stage.addChild(helloLabel); // add label to the stage
-    startButton = new createjs.Bitmap(".../../Assets/images/State_Machine_Buttons/startButton.png"); //looking for image-url (path to image) to hold in this variable
-    // this validates the size of the start button image (instantiated within this bitmap variable) within the canvas -
-    startButton.regX = 75; // startButton.getBounds().height * 0.5 --> register X position of start button image (via resolution width: 150) to the middle of the x-value of the screen (move to half = 75)
-    startButton.regY = 25; // register for Y
-    // - allowing it to move start button by x and y positioning within canvas 
-    startButton.x = 320;
-    startButton.y = 340;
+    // start button
+    startButton = new objects.Button("startButton", 320, 340); //looking for image-url (path to image) to hold in this variable
     startButton.on("click", clickStartButton, this); // to make image interactive - have startbutton variable listen to an event handler (on - "click") - and have event handler reference our function (clickStartButton) to be called
-    //calling both these functions give the start button a roll-over effect - changin alpha of the image on mouseover and then back to solid upon mouseout
-    startButton.on("mouseover", overStartButton, this); // listen to event handler (on - "mouseover") to call function
-    startButton.on("mouseout", outStartButton, this); // listen to event handler (on - "mouseout") to call function
-    stage.addChild(startButton); // add Start Button to the Stage ( a variable which holds the Canvas as a reference)
+    stage.addChild(startButton); // add Start Button (of type Button) to the Stage (a variable of type createJS (class) which holds the Canvas as a reference)
 }
 //# sourceMappingURL=game.js.map
