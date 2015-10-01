@@ -1,3 +1,4 @@
+/// <reference path="../config/config.ts" />
 /// <reference path="../typings/jquery/jquery.d.ts" />
 /// <reference path="../typings/stats/stats.d.ts" />
 /// <reference path="../typings/createjs-lib/createjs-lib.d.ts" />
@@ -11,6 +12,8 @@
 var canvas;
 var stage;
 var stats; //make a function to set up game stats - via this variable that is of class Stats (imported from Stats.d.js in Scripts/typings folder) 
+var state;
+var scene; // a box that other objects can be added to and used via addChild and similar functions - like Stage
 // Game Variables
 var helloLabel;
 var startButton; // this button variable is of type Button class - where it will hold an image as a bitmap, and have position and mouse-event functionality
@@ -45,6 +48,7 @@ function clickStartButton(event) {
 }
 // This is where all the fun happens
 function main() {
+    scene = new createjs.Container(); // instantiate the variable of type createJS Container
     // hello label
     helloLabel = new objects.Label("Game Start", "60px Consolas", "#000000", 320, 240);
     stage.addChild(helloLabel); // add label to the stage
@@ -52,5 +56,21 @@ function main() {
     startButton = new objects.Button("startButton", 320, 340); //looking for image-url (path to image) to hold in this variable
     startButton.on("click", clickStartButton, this); // to make image interactive - have startbutton variable listen to an event handler (on - "click") - and have event handler reference our function (clickStartButton) to be called
     stage.addChild(startButton); // add Start Button (of type Button) to the Stage (a variable of type createJS (class) which holds the Canvas as a reference)
+    stage.addChild(scene); // this container will contain all our objects, and then implemented into the scene (stage) - preparation for the State Machine
+}
+//State Machine
+function changeState() {
+    //Launch various scenes
+    switch (state) {
+        case config.MENU_STATE:
+            //if state number = 0, show menu scene
+            break;
+        case config.PLAY_STATE:
+            //if state number = 1, show play scne
+            break;
+        case config.OVER_STATE:
+            //if state number = 2, shot game over;
+            break;
+    }
 }
 //# sourceMappingURL=game.js.map
